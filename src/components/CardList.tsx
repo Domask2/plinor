@@ -1,11 +1,9 @@
 import React from 'react';
 import { useTypedSelector } from "../hooks/useTypedSelector";
-
 import CardItem  from './CardItem';
-
 import { Container, Row } from 'react-bootstrap';
 
-const TodoList = () => {
+const TodoList: React.FC = () => {
   const cards = useTypedSelector((state) => state.card.card);
 
   return (

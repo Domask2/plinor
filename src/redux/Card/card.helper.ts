@@ -138,6 +138,7 @@ export const addCardDown = (state: ICard[], payload: addCardDownPayloadI) => {
     if (index === newTodos.length - 1) {
       return newTodos;
     }
+
     const el = newTodos.splice(index, 1)[0];
     newTodos.splice(index + 1, 0, el);
     return newTodos;

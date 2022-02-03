@@ -1,6 +1,7 @@
 import React from 'react';
 import {Accordion, Card, Button } from 'react-bootstrap'
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
+import styled from "styled-components";
 
 function CustomToggle({ children, eventKey }: any) {
   const decoratedOnClick = useAccordionButton(eventKey);
@@ -17,21 +18,36 @@ function CustomToggle({ children, eventKey }: any) {
   );
 }
 
+const AccordionStyle = styled(Accordion)`
+  width: 100%;
+  text-align: center; 
+  margin-bottom: 20px; 
+`;
+
+const CardStyle = styled(Card)`
+  border: none;
+`;
+
+const CardHeaderStyle = styled(Card.Header)`
+  background-color:#ebecf0;
+  border: none;
+`; 
+
 const CardAccordion = ({children} : any) => {
   return (
-    <Accordion style={{width: '70%', textAlign: 'center', marginBottom: '20px' }}>
-    <Card>
-      <Card.Header>
+    <AccordionStyle >
+    <CardStyle>
+      <CardHeaderStyle >
       <CustomToggle eventKey="0">Добавить карточку</CustomToggle>
-      </Card.Header>
+      </CardHeaderStyle>
       <Accordion.Collapse eventKey="0">
         <Card.Body>
           {children}
         </Card.Body>
       </Accordion.Collapse>
-    </Card>
+    </CardStyle>
 
-  </Accordion>
+  </AccordionStyle>
   )
 };
 

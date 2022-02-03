@@ -1,28 +1,40 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addCard } from "../redux/Card/card.actions";
+import { useActions } from "../hooks/useActions";
+
 import {
   Form,
   Container,
   Button,
   InputGroup,
   FormGroup,
-  useAccordionButton
+  useAccordionButton,
 } from "react-bootstrap";
+
+import styled from "styled-components";
+
+const FormStyle = styled(Form)`
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+`;
+
+const ButtonStyle = styled(Button)`
+  width: 20%;
+  background-color: #ffffff3d;
+  color: white;
+  border: none;
+  &:hover {
+    background-color: #cecece3c;
+    border: none;
+  }
+`;
 interface CardInputProps {
   childId?: number;
   toggle?: boolean;
 }
 
-const stylesForm = {
-  width: "80%",
-  marginBottom: "20px",
-  marginTop: "20px",
-};
-
 const CardInput: React.FC<CardInputProps> = ({ childId, toggle }) => {
-  const dispatch = useDispatch();
-
+  const { addCard } = useActions();
   const decoratedOnClick = useAccordionButton("0");
 
   const [inputText, setInputText] = useState("");
@@ -30,16 +42,19 @@ const CardInput: React.FC<CardInputProps> = ({ childId, toggle }) => {
 
   const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(
-      addCard({
-        newCard: {
-          id: Math.random(),
-          title: inputText,
-          width: widthElement === 0 ? 6 : widthElement,
-        },
-        childId,
-      })
-    );
+
+    if (inputText === "") {
+      return;
+    }
+
+    addCard({
+      newCard: {
+        id: Math.random(),
+        title: inputText,
+        width: widthElement === 0 ? 6 : widthElement,
+      },
+      childId,
+    });
 
     setInputText("");
     setWidthElement(0);
@@ -47,21 +62,23 @@ const CardInput: React.FC<CardInputProps> = ({ childId, toggle }) => {
 
   return (
     <Container className="d-flex align-itens-center justify-content-center">
-      <Form onSubmit={(e) => handleSubmitForm(e)} style={stylesForm}>
+      <FormStyle
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmitForm(e)}
+      >
         <Form.Group className="" controlId="formGroupText">
-          <Form.Label>+ Добавить карточку</Form.Label>
           <FormGroup className="d-flex">
             <InputGroup className="d-flex flex-column">
               <Form.Control
-                style={{ width: "98%" }}
+                style={{ width: "90%" }}
                 className="mb-2"
                 type="text"
                 placeholder="Введите имя карточки"
                 value={inputText}
+                isInvalid={inputText === ""}
                 onChange={(e) => setInputText(e.target.value)}
               />
               <Form.Select
-                style={{ width: "98%" }}
+                style={{ width: "90%" }}
                 value={widthElement}
                 aria-label="Default select example"
                 onChange={(e) => setWidthElement(+e.target.value)}
@@ -76,14 +93,13 @@ const CardInput: React.FC<CardInputProps> = ({ childId, toggle }) => {
             </InputGroup>
 
             {!toggle && (
-              <Button
-                style={{ width: "5%" }}
+              <ButtonStyle
                 type="submit"
-                variant="outline-secondary"
+                variant="outline-dark"
                 id="button-addon2"
               >
-                +
-              </Button>
+                Добавить карточку
+              </ButtonStyle>
             )}
 
             {toggle && (
@@ -99,7 +115,7 @@ const CardInput: React.FC<CardInputProps> = ({ childId, toggle }) => {
             )}
           </FormGroup>
         </Form.Group>
-      </Form>
+      </FormStyle>
     </Container>
   );
 };

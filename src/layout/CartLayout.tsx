@@ -1,19 +1,25 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import styled from "styled-components";
 
 interface CardLayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
-const styles = {
-  backgroundColor: '#f1f1f1',
-  height: 'auto',
-}
+const ContainerBG = styled(Container)`
+  background-image: url('img/background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+`;
 
 const CardLayout: React.FC<CardLayoutProps> = ({ children }) => {
   return (
-    <Container style={styles} fluid>{children}</Container>
-  )
+    <ContainerBG fluid>
+      {children}
+    </ContainerBG>
+  );
 };
 
 export default CardLayout;

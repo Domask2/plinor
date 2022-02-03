@@ -12,12 +12,9 @@ const DropdowmInput: React.FC<DropdownInputProps> = ({ id, childId }) => {
   const [inputText, setInputText] = useState("");
 
   return (
-    <Form.Group
-      className="d-flex"
-      style={{ marginBottom: "10px" }}
-      controlId="formGroupText"
-    >
+    <Form.Group className="d-flex mb-2" controlId="formGroupText">
       <Form.Control
+        className="mb-2"
         type="text"
         placeholder="изменить имя"
         value={inputText}
@@ -25,18 +22,18 @@ const DropdowmInput: React.FC<DropdownInputProps> = ({ id, childId }) => {
       />
 
       <Dropdown.Item style={{ width: "20px", padding: "2px 5px" }}>
-          <Button
-            style={{ padding: "0px" }}
-            type="submit"
-            variant="outline-secondary"
-            id="button-addon2"
-            onClick={() => {
-              dispatch(addEditNameCard({ title: inputText, id, childId }));
-              setInputText("");
-            }}
-          >
-            +
-          </Button>
+        <Button
+          style={{ padding: "2px" }}
+          type="submit"
+          variant="outline-secondary"
+          id="button-addon2"
+          onClick={() => {
+            dispatch(addEditNameCard({ title: inputText, id, childId }));
+            setInputText("");
+          }}
+        >
+          +
+        </Button>
       </Dropdown.Item>
     </Form.Group>
   );
