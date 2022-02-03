@@ -6,17 +6,18 @@ interface CardLayoutProps {
   children: React.ReactNode;
 }
 
-const ContainerBG = styled(Container)`
+const ContainerBG = styled.div`
   background-image: url('img/background.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100%;
+  height: 100vh;
+  overflow: auto;
 `;
 
 const CardLayout: React.FC<CardLayoutProps> = ({ children }) => {
   return (
-    <ContainerBG fluid>
+    <ContainerBG>
       {children}
     </ContainerBG>
   );

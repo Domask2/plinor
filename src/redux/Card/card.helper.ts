@@ -82,10 +82,9 @@ export const editCardWidth = (
   }
 };
 
-export const addCardUpDown = (
+export const addCardUp = (
   state: ICard[],
   payload: addCardUpPayloadI,
-  sign: string
 ) => {
   let newTodos = state;
   const { id, childId } = payload;

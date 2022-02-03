@@ -17,6 +17,13 @@ const DropdowmInput: React.FC<DropdownInputProps> = ({ id, childId }) => {
     setInputText("");
   };
 
+  const handleKeyDown = (event:any) => {
+    if (event.key === 'Enter') {
+      addEditNameCard({ title: inputText, id, childId });
+      setInputText("");
+    }
+  }
+
   return (
     <Form.Group className="d-flex mb-2" controlId="formGroupText">
       <FormGroup className="d-flex">
@@ -27,6 +34,7 @@ const DropdowmInput: React.FC<DropdownInputProps> = ({ id, childId }) => {
           value={inputText}
           isInvalid={inputText === ""}
           onChange={(e) => setInputText(e.target.value)}
+          onKeyDown={(e) => handleKeyDown(e)}
         />
 
         <Dropdown.Item
