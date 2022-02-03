@@ -2,6 +2,7 @@ import React from "react";
 import { Col, Card } from "react-bootstrap";
 
 import { ICard } from "../redux/Card/card.types";
+
 import CardAccordion from "./CardDropdown/CardAccordion";
 import CardDropdown from "./CardDropdown/CardDropdown";
 import CardInput from "./CardInput";
@@ -42,7 +43,7 @@ const CardItem: React.FC<CardItemProps> = ({ card }) => {
     <Col xs={width}>
       <CardStyle className="d-flex align-items-center justify-content-center">
         <Text> {title} </Text>
-        <Divider/>
+        <Divider />
         <CardDropdown id={id} />
 
         <CardAccordion>
