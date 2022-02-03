@@ -1,6 +1,6 @@
 # Plinor Card List
 
-Ссылка на проект:
+Ссылка на проект: https://xenodochial-bhaskara-9673e5.netlify.app/
 
 Тестовое задание (React) для компании РЦ ПЛИНОР.
 Задача: https://docs.google.com/document/d/1rpuj3ERiakYow-1408O_H64hZyfcDHQyF9-f3_k50TI/edit

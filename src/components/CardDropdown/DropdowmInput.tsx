@@ -10,13 +10,14 @@ const DropdowmInput: React.FC<DropdownInputProps> = ({ id, childId }) => {
   const { addEditNameCard } = useActions();
   const [inputText, setInputText] = useState("");
 
-  const handlerAddEditNameCard = () => {
+  const handlerAddEditNameCard = (e) => {
+    e.preventDefault();
     addEditNameCard({ title: inputText, id, childId });
     setInputText("");
   };
 
   return (
-    <Form onSubmit={handlerAddEditNameCard}>
+    <Form onSubmit={(e) => handlerAddEditNameCard(e)}>
       <Form.Group className="d-flex mb-2" controlId="formGroupText">
         <FormGroup className="d-flex">
           <Form.Control
