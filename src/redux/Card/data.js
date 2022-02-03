@@ -24,17 +24,17 @@ const cartArray = [
   {
     id: 0.65,
     title: "Flowers - 2",
-    width: 3,
+    width: 4,
   },
   {
     id: 0.3,
     title: "Chicken - 3",
-    width: 2,
+    width: 4,
     array: [
       {
         id: 0.31,
         title: "Chicken Small - 11",
-        width: 4,
+        width: 8,
       },
       {
         id: 0.32,

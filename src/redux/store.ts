@@ -5,16 +5,16 @@ import logger from 'redux-logger';
 
 import { all, call } from '@redux-saga/core/effects';
 
-import { cartSagas } from './Cart/cart.sagas';
-import { cartReducer } from './Cart/cart.reducer';
+import { cardSagas } from './Card/card.sagas';
+import { cardReducer } from './Card/card.reducer';
 
 
 function* rootSaga() {
-  yield all([call(cartSagas)]);
+  yield all([call(cardSagas)]);
 }
 
 export const rootReducer = combineReducers({
-  cart: cartReducer
+  card: cardReducer
 });
 
 const sagaMiddleware = createSagaMiddleware();

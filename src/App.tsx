@@ -1,18 +1,23 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
-import { RootState } from "./redux/store";
+import CardLayout from './layout/CartLayout';
+import CardInput from "./components/CardInput";
+import CardList from "./components/CardList";
+
+
+import { useTypedSelector } from "./hooks/useTypedSelector";
 
 const App = () => {
 
-  const carts = useSelector<RootState>((state) => state.cart.cart);
+  const cards = useTypedSelector((state) => state.card.card);
 
-  console.log(carts)
+  console.log(cards)
 
   return (
-    <div className="App">
- 
-    </div>
+    <CardLayout>
+      <CardInput />
+      <CardList />
+    </CardLayout>
   );
 }
 
