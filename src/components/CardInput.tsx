@@ -7,10 +7,11 @@ import {
   Button,
   InputGroup,
   FormGroup,
+  useAccordionButton
 } from "react-bootstrap";
-
 interface CardInputProps {
   childId?: number;
+  toggle?: boolean;
 }
 
 const stylesForm = {
@@ -19,8 +20,10 @@ const stylesForm = {
   marginTop: "20px",
 };
 
-const CardInput: React.FC<CardInputProps> = ({ childId }) => {
+const CardInput: React.FC<CardInputProps> = ({ childId, toggle }) => {
   const dispatch = useDispatch();
+
+  const decoratedOnClick = useAccordionButton("0");
 
   const [inputText, setInputText] = useState("");
   const [widthElement, setWidthElement] = useState(0);
@@ -63,9 +66,7 @@ const CardInput: React.FC<CardInputProps> = ({ childId }) => {
                 aria-label="Default select example"
                 onChange={(e) => setWidthElement(+e.target.value)}
               >
-                <option value={6}>
-                  Размер карточки (по умолчанию = 6)
-                </option>
+                <option value={6}>Размер карточки (по умолчанию = 6)</option>
                 <option value="4">4</option>
                 <option value="6">6</option>
                 <option value="8">8</option>
@@ -74,14 +75,28 @@ const CardInput: React.FC<CardInputProps> = ({ childId }) => {
               </Form.Select>
             </InputGroup>
 
-            <Button
-              style={{ width: "15%" }}
-              type="submit"
-              variant="outline-secondary"
-              id="button-addon2"
-            >
-              +
-            </Button>
+            {!toggle && (
+              <Button
+                style={{ width: "5%" }}
+                type="submit"
+                variant="outline-secondary"
+                id="button-addon2"
+              >
+                +
+              </Button>
+            )}
+
+            {toggle && (
+              <Button
+                type="submit"
+                onClick={decoratedOnClick}
+                style={{ width: "20%" }}
+                variant="outline-secondary"
+                id="button-addon2"
+              >
+                +
+              </Button>
+            )}
           </FormGroup>
         </Form.Group>
       </Form>

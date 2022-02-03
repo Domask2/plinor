@@ -1,6 +1,6 @@
 import { cardTypes, CardAction, ICard } from "./card.types";
 import cardArray from "./data";
-import { addCardNewItem, editNameCard, editCardWidth, addCardUpDown, deleteCardItem } from "./card.helper";
+import { addCardNewItem, editNameCard, editCardWidth, addCardUpDown, deleteCardItem, addCardDown } from "./card.helper";
 
 export type TInitialState = typeof initialState;
 
@@ -36,7 +36,7 @@ export const cardReducer = (
     case cardTypes.ADD_CARD_DOWN_SAGA:
       return {
         ...state,
-        card: addCardUpDown([...state.card], action.payload, '-'),
+        card: addCardDown([...state.card], action.payload),
       };
     case cardTypes.DELETE_CARD_SAGA:
       return {

@@ -19,7 +19,7 @@ const DropDownEditWidth: React.FC<DropDownEditWidthProps> = ({
       className="d-flex align-items-center justify-content-center"
       variant="light"
       title="Изменить размер карточки"
-      onSelect={(e) => dispatch(editWidthCard({ width: e, id }))}
+      onSelect={(e) => dispatch(editWidthCard({ width: e, id, childId }))}
     >
       <Dropdown.Item eventKey="4">4</Dropdown.Item>
       <Dropdown.Item eventKey="6">6</Dropdown.Item>

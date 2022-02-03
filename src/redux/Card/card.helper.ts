@@ -8,7 +8,7 @@ import {
   deleteCardPayloadI,
 } from "./card.types";
 
-export const addCardNewItem = (state: ICard[], payload: addCardPayloadI ) => {
+export const addCardNewItem = (state: ICard[], payload: addCardPayloadI) => {
   let newState = state;
   const { newCard, childId } = payload;
 
@@ -18,7 +18,7 @@ export const addCardNewItem = (state: ICard[], payload: addCardPayloadI ) => {
     if (newState[index].hasOwnProperty("array")) {
       newState[index].array?.push(newCard);
     } else {
-      newState[index].array = [{}];
+      newState[index].array = [];
       newState[index].array?.push(newCard);
     }
   } else {
@@ -96,20 +96,12 @@ export const addCardUpDown = (
       (cart) => cart.id === childId
     );
 
-    // if (indexChild === 0) {
-    //     return newTodos;
-    // } else if(indexChild === newTodos.length - 1) {
-    //   return newTodos;
-    // }
-
-    if (indexChild) {
-      let el = newTodos[index].array?.splice(indexChild, 1)[0];
-      if (sign === "+") {
-        el && newTodos[index].array?.splice(indexChild - 1, 0, el);
-      } else if (sign === "-") {
-        el && newTodos[index].array?.splice(indexChild + 1, 0, el);
-      }
+    if (indexChild === 0) {
+      return newTodos;
     }
+
+    let el = newTodos[index].array?.splice(indexChild!, 1)[0];
+    el && newTodos[index].array?.splice(indexChild! - 1, 0, el);
 
     return newTodos;
   } else {
@@ -118,54 +110,50 @@ export const addCardUpDown = (
       return newTodos;
     }
     const el = newTodos.splice(index, 1)[0];
-    if (sign === "+") {
-      newTodos.splice(index - 1, 0, el);
-    } else if (sign === "-") {
-      newTodos.splice(index + 1, 0, el);
-    }
+    newTodos.splice(index - 1, 0, el);
     return newTodos;
   }
 };
 
-// export const addCardDown = (state: ICard[], payload: addCardDownPayloadI) => {
-//   let newTodos = state;
+export const addCardDown = (state: ICard[], payload: addCardDownPayloadI) => {
+  let newTodos = state;
+  const { id, childId } = payload;
 
-//   if (child > 0) {
-//     let index = newTodos.findIndex((cart) => cart.id === id);
-//     let indexChild = newTodos[index].array.findIndex(
-//       (cart) => cart.id === child
-//     );
-//     if (indexChild === newTodos.length - 1) {
-//       return newTodos;
-//     }
-//     let el = newTodos[index].array.splice(indexChild, 1)[0];
+  if (childId) {
+    let index = newTodos.findIndex((cart) => cart.id === id);
+    let indexChild = newTodos[index].array?.findIndex(
+      (cart) => cart.id === childId
+    );
 
-//     newTodos[index].array.splice(indexChild + 1, 0, el);
+    if (indexChild === newTodos.length - 1) {
+      return newTodos;
+    }
 
-//     return newTodos;
-//   } else {
-//     let index = newTodos.findIndex((cart) => cart.id === id);
-//     if (index === newTodos.length - 1) {
-//       return newTodos;
-//     }
-//     const el = newTodos.splice(index, 1)[0];
-//     newTodos.splice(index + 1, 0, el);
-//     return newTodos;
-//   }
-// };
+    let el = newTodos[index].array?.splice(indexChild!, 1)[0];
+    el && newTodos[index].array?.splice(indexChild! + 1, 0, el);
+
+    return newTodos;
+  } else {
+    let index = newTodos.findIndex((cart) => cart.id === id);
+    if (index === newTodos.length - 1) {
+      return newTodos;
+    }
+    const el = newTodos.splice(index, 1)[0];
+    newTodos.splice(index + 1, 0, el);
+    return newTodos;
+  }
+};
 
 export const deleteCardItem = (state: ICard[], payload: deleteCardPayloadI) => {
   let newTodos = state;
   const { id, childId } = payload;
 
-  if (childId !== undefined) {
+  if (childId) {
     let index = newTodos.findIndex((cart) => cart.id === id);
-    let indexDelete = newTodos[index].array?.findIndex((arr) => arr.id === childId);
+    newTodos[index].array = newTodos[index].array?.filter((arr) => {
+      return arr.id !== childId;
+    });
 
-    indexDelete && newTodos[index].array?.splice(indexDelete, 1)
-
-    
-    
     return newTodos;
   } else {
     newTodos = newTodos.filter((todo) => todo.id !== id);

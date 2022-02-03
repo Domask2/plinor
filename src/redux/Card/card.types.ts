@@ -1,14 +1,15 @@
+export interface ArrayCard {
+  id: number;
+  title: string;
+  width: number;
+}
+
 export interface ICard {
   id: number;
   title: string;
   width: number;
-  array?: [
-    {
-      id?: number;
-      title?: string;
-      width?: number;
-    }
-  ];
+  array?: ArrayCard[]
+  
 }
 
 export enum cardTypes {

@@ -12,12 +12,10 @@ import DropDowmItem from "./DropDowmItem";
 
 interface CardDropDownProps {
   id: number
-  width: number;
-  title: string;
   childId?: number
 }
 
-const CardDropdown: React.FC<CardDropDownProps> = ({id, width, title, childId }) => {
+const CardDropdown: React.FC<CardDropDownProps> = ({id, childId }) => {
   return (
     <DropdownButton
       style={{ marginBottom: "10px", backgroundColor:'white', position: 'absolute', top: '10px', right: '10px', padding: '0'  }}
@@ -28,7 +26,7 @@ const CardDropdown: React.FC<CardDropDownProps> = ({id, width, title, childId })
     >
       <Dropdown.ItemText style={{ color: "blue" }}>Действия над карточкой</Dropdown.ItemText>
 
-      <DropdowmInput id={id}  childId={childId}/>
+      <DropdowmInput id={id} childId={childId}/>
       <DropDownEditWidth id={id} childId={childId}/>
       <DropDowmItem actionFunction={addCardUp({id, childId})} title='Переместить вверх' />
       <DropDowmItem actionFunction={addCardDown({id, childId})} title='Переместить вниз' />
