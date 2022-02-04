@@ -1,17 +1,11 @@
 import React from "react";
 import { Col, Card } from "react-bootstrap";
-
 import { ICard } from "../redux/Card/card.types";
-
 import CardAccordion from "./CardDropdown/CardAccordion";
 import CardDropdown from "./CardDropdown/CardDropdown";
 import CardInput from "./CardInput";
 
 import styled from "styled-components";
-interface CardItemProps {
-  card: ICard;
-}
-
 const CardStyle = styled(Card)`
   height: auto;
   margin-bottom: 25px;
@@ -35,6 +29,10 @@ const Divider = styled.div`
   height: 1px;
   background-color: gray;
 `;
+
+interface CardItemProps {
+  card: ICard;
+}
 
 const CardItem: React.FC<CardItemProps> = ({ card }) => {
   const { id, title, width } = card;

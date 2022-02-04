@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useActions } from "../hooks/useActions";
-
 import {
   Form,
   Container,
@@ -9,7 +8,6 @@ import {
   FormGroup,
   useAccordionButton,
 } from "react-bootstrap";
-
 import styled from "styled-components";
 
 const FormStyle = styled(Form)`

@@ -1,10 +1,13 @@
 import React from "react";
 import { Accordion, Card, Button } from "react-bootstrap";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
-
 import styled from "styled-components";
+interface CustomToggleProps {
+  children: React.ReactNode
+  eventKey: string
+}
 
-const CustomToggle = ({ children, eventKey }: any) => {
+const CustomToggle = ({ children, eventKey }: CustomToggleProps) => {
   const decoratedOnClick = useAccordionButton(eventKey);
   return (
     <Button

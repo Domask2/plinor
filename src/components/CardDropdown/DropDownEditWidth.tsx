@@ -2,16 +2,12 @@ import React from "react";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import { editWidthCard } from "../../redux/Card/card.actions";
 import { useDispatch } from "react-redux";
-
 interface DropDownEditWidthProps {
   id: number;
   childId?: number;
 }
 
-const DropDownEditWidth: React.FC<DropDownEditWidthProps> = ({
-  id,
-  childId,
-}) => {
+const DropDownEditWidth: React.FC<DropDownEditWidthProps> = ({ id, childId }) => {
   const dispatch = useDispatch();
 
   return (
